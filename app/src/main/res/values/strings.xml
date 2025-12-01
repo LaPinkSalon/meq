@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Colour Checker</string>
+    <string name="permission_rationale_camera">Camera access is required to verify the colour checker.</string>
+    <string name="action_open_settings">Open settings</string>
+</resources>

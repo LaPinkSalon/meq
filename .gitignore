@@ -1,0 +1,22 @@
+# Gradle
+/.gradle
+/.gradle-clean
+/.gradle-local
+/build
+/app/build
+
+# Android Studio
+/.idea
+*.iml
+.DS_Store
+
+# Local configuration
+local.properties
+
+# Generated
+captures/
+outputs/
+.cxx/
+
+# Logs
+*.log

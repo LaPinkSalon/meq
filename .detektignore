@@ -1,0 +1,30 @@
+# Detekt Ignore File
+# Files and directories to exclude from Detekt analysis
+
+# Build outputs
+**/build/**
+**/bin/**
+
+# Generated code
+**/generated/**
+**/*_Factory.kt
+**/*_MembersInjector.kt
+**/*Hilt_*.kt
+**/*_HiltModules*.kt
+
+# Test resources
+**/test/resources/**
+**/androidTest/resources/**
+
+# Gradle
+.gradle/**
+gradle/**
+gradlew
+gradlew.bat
+
+# IDE
+.idea/**
+*.iml
+
+# Other
+local.properties

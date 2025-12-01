@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ImplicitDefaultLocale:ColorCheckerApp.kt$String.format("%.2f", this)</ID>
+    <ID>ImplicitDefaultLocale:ColorCheckerApp.kt$String.format("%.3f", this)</ID>
+    <ID>LongMethod:CameraPreview.kt$@Composable fun CameraPreview( modifier: Modifier = Modifier, permissionsRequired: Boolean, torchEnabled: Boolean, onRequestPermissions: () -&gt; Unit, onFrame: (AnalysisFrame) -&gt; Unit )</ID>
+    <ID>LongMethod:DetectionUseCase.kt$DetectionUseCase$suspend fun analyze(frame: AnalysisFrame? = null): AnalysisOutcome</ID>
+    <ID>LongMethod:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$override suspend fun detect(frame: AnalysisFrame): DetectionOutput</ID>
+    <ID>LongParameterList:CameraPreview.kt$( lifecycleOwner: LifecycleOwner, previewView: PreviewView, cameraProviderFuture: ListenableFuture&lt;ProcessCameraProvider&gt;, analyzerExecutor: ExecutorService, cameraRef: MutableState&lt;Camera?&gt;, onFrame: (AnalysisFrame) -&gt; Unit )</ID>
+    <ID>LongParameterList:ColorCheckerApp.kt$( state: DetectionUiState, onToggleTorch: () -&gt; Unit, onRequestPermissions: () -&gt; Unit, onFrame: (AnalysisFrame) -&gt; Unit, debugInfo: DetectionDebugInfo?, snackbarHostState: SnackbarHostState )</ID>
+    <ID>MagicNumber:ColorCheckerApp.kt$0xFF22C55E</ID>
+    <ID>MagicNumber:ColorCheckerApp.kt$0xFFDC2626</ID>
+    <ID>MagicNumber:ColorCheckerApp.kt$0xFFEA580C</ID>
+    <ID>MagicNumber:ImageConverters.kt$0.337633f</ID>
+    <ID>MagicNumber:ImageConverters.kt$0.698001f</ID>
+    <ID>MagicNumber:ImageConverters.kt$0xFF</ID>
+    <ID>MagicNumber:ImageConverters.kt$1.370705f</ID>
+    <ID>MagicNumber:ImageConverters.kt$1.732446f</ID>
+    <ID>MagicNumber:ImageConverters.kt$128</ID>
+    <ID>MagicNumber:ImageConverters.kt$255</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.015</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.02</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.045</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.1</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.15</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.17</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.20</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.24</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.32</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.4</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.5</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$0.6</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$20</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$25.0</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$275.0</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$30.0</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$5</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$50</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$6</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$6.0</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$610.0</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$63.0</ID>
+    <ID>MagicNumber:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$64.0</ID>
+    <ID>MaxLineLength:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$rgba = Mat(frame.height, frame.width, opencv_core.CV_8UC4, BytePointer(ByteBuffer.wrap(pixels)) as org.bytedeco.javacpp.Pointer?)</ID>
+    <ID>ReturnCount:DetectionUseCase.kt$DetectionUseCase$private fun isValidFrame(frame: AnalysisFrame): Boolean</ID>
+    <ID>ReturnCount:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$override suspend fun detect(frame: AnalysisFrame): DetectionOutput</ID>
+    <ID>TooGenericExceptionCaught:CameraPreview.kt$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:DetectionUseCase.kt$DetectionUseCase$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:DetectionViewModel.kt$DetectionViewModel$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:OpenCvColorCheckerDetector.kt$OpenCvColorCheckerDetector$e: Exception</ID>
+    <ID>TopLevelPropertyNaming:Color.kt$val OnSurfaceDark = Color(0xFFE2E8F0)</ID>
+    <ID>TopLevelPropertyNaming:Color.kt$val OnSurfaceLight = Color(0xFF0F172A)</ID>
+    <ID>TopLevelPropertyNaming:Color.kt$val PrimaryBlue = Color(0xFF2563EB)</ID>
+    <ID>TopLevelPropertyNaming:Color.kt$val SurfaceDark = Color(0xFF0F172A)</ID>
+    <ID>TopLevelPropertyNaming:Color.kt$val SurfaceLight = Color(0xFFF8FAFC)</ID>
+    <ID>TopLevelPropertyNaming:Shape.kt$val Shapes = Shapes( small = RoundedCornerShape(8.dp), medium = RoundedCornerShape(12.dp), large = RoundedCornerShape(24.dp) )</ID>
+    <ID>TopLevelPropertyNaming:Theme.kt$private val DarkColorScheme = darkColorScheme( primary = PrimaryBlue, onPrimary = OnSurfaceDark, surface = SurfaceDark, onSurface = OnSurfaceDark )</ID>
+    <ID>TopLevelPropertyNaming:Theme.kt$private val LightColorScheme = lightColorScheme( primary = PrimaryBlue, onPrimary = OnSurfaceLight, surface = SurfaceLight, onSurface = OnSurfaceLight )</ID>
+    <ID>TopLevelPropertyNaming:Type.kt$val Typography = Typography()</ID>
+    <ID>UnusedPrivateMember:ColorCheckerApp.kt$@Preview(showBackground = true) @Composable private fun PreviewDetectionScreen()</ID>
+    <ID>VariableNaming:DetectionViewModel.kt$DetectionViewModel$private val _debug = MutableStateFlow&lt;DetectionDebugInfo?&gt;(null)</ID>
+    <ID>VariableNaming:DetectionViewModel.kt$DetectionViewModel$private val _uiState = MutableStateFlow(DetectionUiState())</ID>
+  </CurrentIssues>
+</SmellBaseline>
