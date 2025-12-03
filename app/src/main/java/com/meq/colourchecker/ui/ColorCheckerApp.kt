@@ -122,7 +122,8 @@ private fun DetectionScreen(
                         frameWidth = debugInfo.frameWidth,
                         frameHeight = debugInfo.frameHeight,
                         rotationDegrees = debugInfo.rotationDegrees,
-                        secondaryQuad = debugInfo.secondaryQuad
+                        secondaryQuad = debugInfo.secondaryQuad,
+                        detectionStatus = state.status
                     )
                 }
             }
@@ -234,9 +235,25 @@ private fun QuadOverlay(
     frameHeight: Int = 0,
     rotationDegrees: Int = 0,
     secondaryQuad: List<com.meq.colourchecker.processing.Point> = emptyList(),
-    secondaryValid: Boolean = false
+    secondaryValid: Boolean = false,
+    detectionStatus: DetectionUiState.Status = DetectionUiState.Status.Scanning
 ) {
     if (quad.size < 4 || frameWidth <= 0 || frameHeight <= 0) return
+
+    // Choose overlay color based on detection status
+    val overlayColor = when (detectionStatus) {
+        DetectionUiState.Status.Passed -> Color(0xCC22C55E)  // Green - success
+        DetectionUiState.Status.Failed -> Color(0xCCDC2626)  // Red - failed validation
+        DetectionUiState.Status.Scanning -> Color(0xCC3B82F6)  // Blue - analyzing
+        DetectionUiState.Status.Error -> Color(0xCCEA580C)  // Orange - error
+    }
+    val dotColor = when (detectionStatus) {
+        DetectionUiState.Status.Passed -> Color(0xFF22C55E)  // Green - success
+        DetectionUiState.Status.Failed -> Color(0xFFDC2626)  // Red - failed validation
+        DetectionUiState.Status.Scanning -> Color(0xFF3B82F6)  // Blue - analyzing
+        DetectionUiState.Status.Error -> Color(0xFFEA580C)  // Orange - error
+    }
+
     Canvas(modifier = modifier) {
         // PreviewView is using FILL_CENTER (center-crop). Map buffer coords by scaling
         // to fill and then offsetting to account for the cropped margins.
@@ -266,10 +283,10 @@ private fun QuadOverlay(
             quad.drop(1).forEach { p -> lineTo(map(p).x, map(p).y) }
             close()
         }
-        drawPath(path = path, color = Color(0xCC22C55E), style = Stroke(width = 6f))
+        drawPath(path = path, color = overlayColor, style = Stroke(width = 12f))
         quad.forEach { p ->
             val mapped = map(p)
-            drawCircle(color = Color(0xFF22C55E), radius = 8f, center = mapped)
+            drawCircle(color = dotColor, radius = 12f, center = mapped)
         }
         if (secondaryQuad.size >= 4) {
             val secPath = Path().apply {
@@ -277,12 +294,10 @@ private fun QuadOverlay(
                 secondaryQuad.drop(1).forEach { p -> lineTo(map(p).x, map(p).y) }
                 close()
             }
-            val secColor = Color(0xCC22C55E)
-            val dotColor = Color(0xFF22C55E)
-            drawPath(path = secPath, color = secColor, style = Stroke(width = 6f))
+            drawPath(path = secPath, color = overlayColor, style = Stroke(width = 12f))
             secondaryQuad.forEach { p ->
                 val mapped = map(p)
-                drawCircle(color = dotColor, radius = 8f, center = mapped)
+                drawCircle(color = dotColor, radius = 12f, center = mapped)
             }
         }
     }

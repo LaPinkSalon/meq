@@ -9,8 +9,8 @@ overlayed quads.
 - CameraX preview with live `ImageAnalysis` feeding an OpenCV detector.
 - Detector uses OpenCV MCC to find panels, warps to a 6×4 grid, scores patches against MCC24 Lab
   references (CIEDE2000), and combines area/aspect/contrast/blur/color into confidence.
-- Supports passport (two panels); requires both panels visible for a pass. Overlays show detected
-  quads.
+- Supports passport (two panels); requires both panels visible for a pass. Color-coded overlays show
+  detected quads with status feedback (green=pass, red=fail, blue=scanning).
 - Hilt DI, Kotlin coroutines, Material3 Compose UI.
 
 ## Documentation
@@ -52,8 +52,12 @@ Tests:
 1) Install debug/release build on a device.
 2) Grant camera permission on launch.
 3) Place a ColourChecker (single or dual panel) in view, flat and well lit.
-4) Watch the status card and overlay; a green overlay indicates detected panels. Pass requires
-   confidence ≥0.70 (70%).
+4) Watch the status card and overlay. The overlay color indicates detection status:
+   - **🟢 Green**: Valid color checker detected (PASS - confidence ≥70%)
+   - **🔴 Red**: Detection failed validation (wrong object, poor lighting, blur, etc.)
+   - **🔵 Blue**: Analyzing/scanning (detection in progress)
+   - **🟠 Orange**: System error
+   - **No overlay**: No detection found
 5) Torch toggle available in the top bar (if device supports it).
 
 ## Assumptions & limitations
@@ -64,6 +68,8 @@ Tests:
 - Requires confidence ≥70% to pass; partially blocked/covered ColorCheckers will fail.
 - CPU-only processing: 3-10 FPS frame rate (adequate for real-time verification).
 - Overlay uses center-crop mapping; extreme aspect ratios may show slight misalignment.
+- OpenCV MCC detector may find false-positives (grids, books, tiles); validation and color-coded
+  overlays help distinguish real vs. fake detections.
 - Color thresholds are relaxed (ΔE 120/180) for real-world lighting; heavy glare/blur will fail.
 - Only arm64-v8a and x86_64 ABIs are packaged (larger APK due to native libs).
 - No network or backend; all processing is on-device.
