@@ -27,11 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size as ComposeSize
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -119,8 +115,16 @@ private fun DetectionScreen(
                     torchEnabled = state.isTorchOn,
                     onFrame = onFrame
                 )
-                // Always-visible framing guide to help users position the ColorChecker
-                FramingGuideOverlay(modifier = Modifier.fillMaxSize())
+                debugInfo?.quad?.takeIf { it.size >= 4 }?.let { quad ->
+                    QuadOverlay(
+                        quad = quad,
+                        modifier = Modifier.fillMaxSize(),
+                        frameWidth = debugInfo.frameWidth,
+                        frameHeight = debugInfo.frameHeight,
+                        rotationDegrees = debugInfo.rotationDegrees,
+                        secondaryQuad = debugInfo.secondaryQuad
+                    )
+                }
             }
             val debugPanelHeight = 72.dp
             Box(
@@ -281,103 +285,6 @@ private fun QuadOverlay(
                 drawCircle(color = dotColor, radius = 8f, center = mapped)
             }
         }
-    }
-}
-
-@Composable
-private fun FramingGuideOverlay(modifier: Modifier = Modifier) {
-    Canvas(modifier = modifier) {
-        // Guide dimensions: 80% of width, 1.5:1 aspect ratio (matches ColorChecker 6x4 grid)
-        val guideWidth = size.width * 0.8f
-        val guideHeight = guideWidth / 1.5f
-
-        // Center the guide rectangle
-        val centerX = size.width / 2f
-        val centerY = size.height / 2f
-        val topLeft = Offset(
-            x = centerX - guideWidth / 2f,
-            y = centerY - guideHeight / 2f
-        )
-
-        // Draw dashed rectangle with rounded corners
-        // Semi-transparent white (60% opacity) for clear guidance
-        drawRoundRect(
-            color = Color.White.copy(alpha = 0.6f),
-            topLeft = topLeft,
-            size = ComposeSize(guideWidth, guideHeight),
-            cornerRadius = CornerRadius(16f, 16f),
-            style = Stroke(
-                width = 4f,
-                pathEffect = PathEffect.dashPathEffect(
-                    intervals = floatArrayOf(20f, 10f), // 20px dash, 10px gap
-                    phase = 0f
-                )
-            )
-        )
-
-        // Add corner markers for extra visual guidance
-        val cornerSize = 50f
-        val cornerColor = Color.White.copy(alpha = 0.8f)
-        val cornerStroke = Stroke(width = 5f)
-
-        // Top-left corner
-        drawLine(
-            color = cornerColor,
-            start = Offset(topLeft.x, topLeft.y + cornerSize),
-            end = topLeft,
-            strokeWidth = cornerStroke.width
-        )
-        drawLine(
-            color = cornerColor,
-            start = topLeft,
-            end = Offset(topLeft.x + cornerSize, topLeft.y),
-            strokeWidth = cornerStroke.width
-        )
-
-        // Top-right corner
-        val topRight = Offset(topLeft.x + guideWidth, topLeft.y)
-        drawLine(
-            color = cornerColor,
-            start = Offset(topRight.x, topRight.y + cornerSize),
-            end = topRight,
-            strokeWidth = cornerStroke.width
-        )
-        drawLine(
-            color = cornerColor,
-            start = topRight,
-            end = Offset(topRight.x - cornerSize, topRight.y),
-            strokeWidth = cornerStroke.width
-        )
-
-        // Bottom-right corner
-        val bottomRight = Offset(topLeft.x + guideWidth, topLeft.y + guideHeight)
-        drawLine(
-            color = cornerColor,
-            start = Offset(bottomRight.x, bottomRight.y - cornerSize),
-            end = bottomRight,
-            strokeWidth = cornerStroke.width
-        )
-        drawLine(
-            color = cornerColor,
-            start = bottomRight,
-            end = Offset(bottomRight.x - cornerSize, bottomRight.y),
-            strokeWidth = cornerStroke.width
-        )
-
-        // Bottom-left corner
-        val bottomLeft = Offset(topLeft.x, topLeft.y + guideHeight)
-        drawLine(
-            color = cornerColor,
-            start = Offset(bottomLeft.x, bottomLeft.y - cornerSize),
-            end = bottomLeft,
-            strokeWidth = cornerStroke.width
-        )
-        drawLine(
-            color = cornerColor,
-            start = bottomLeft,
-            end = Offset(bottomLeft.x + cornerSize, bottomLeft.y),
-            strokeWidth = cornerStroke.width
-        )
     }
 }
 
